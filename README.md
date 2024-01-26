@@ -1,3 +1,3 @@
-Turn on apache and MySQL
-Import 5yndrome (4).sql into MySQL
-Start navigating with home.html
+Turn on apache and MySQL\n
+Import 5yndrome (4).sql into MySQL \n
+Start navigating with about.html \n
