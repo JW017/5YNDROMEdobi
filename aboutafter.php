@@ -1,0 +1,134 @@
+<?php
+
+include 'config.php';
+
+session_start();
+$user_id = $_SESSION['user_id'];
+
+if(!isset($user_id)){
+   header('location:about.php');
+};
+
+if(isset($_GET['logout'])){
+   unset($user_id);
+   session_destroy();
+   header('location:login.php');
+}
+
+$select = mysqli_query($conn, "SELECT Name FROM `users` WHERE UserID = '$user_id'") or die("query failed");
+		if(mysqli_num_rows($select) > 0){
+		$fetch = mysqli_fetch_assoc($select);
+		}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/about.css">
+    <script src="https://kit.fontawesome.com/212d76f1f1.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Press+Start+2P&family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Kaushan+Script&family=Press+Start+2P&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Comme:wght@400;700&family=Josefin+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <title>About Us</title>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+          <a class="logo"><img src="img/SyndromeLogo.jpg" alt="Logo"><span>5YNDROME</span></a>
+          <nav>
+            <ul class="nav-links">
+              <li><a href="indexafter.php">Home</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="addcart2after.php">Services</a></li>
+              <li><a href="contactafter.php">Contact</a></li>
+            </ul>
+          </nav>
+          <div class="social-icons">
+            <a href="cartafter.php"><i class="fa-solid fa-cart-shopping"></i></a>
+            <a href="user.php"><i class="fa-regular fa-user"></i><span><?php echo $fetch['Name'];?></span></a>
+          </div>
+        </div>
+      </header>
+
+      <section class="about" id="about">
+        <div class="row">
+            <div class="content">
+                <h1>About 5YNDROME</h1>
+                <p>
+                  5YNDROME provides a laundry service can save time, effort and ensure clothes and linens are cleaned and cared for properly, 
+                  helping them last longer. Those with tight schedules or a lack of machinery to do their own laundry can also benefit from 5YNDROME's 
+                  self-pickup and delivery services, as well as businesses that need a huge volume of laundry cleaned each day. 
+                </p>
+                <!-- <a href="#">Learn More</a> -->
+            </div>
+
+            <div class="image">
+                <img src="img/about1.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="row2">
+          <div class="image2">
+              <img src="img/about2.jpg" alt="">
+          </div>
+
+          <div class="content2">
+              <h1>Why Us?</h1>
+              <p>
+                We pride ourselves on delivering laundry services of the highest quality.
+                Our experienced team pays meticulous attention to detail, ensuring your clothes are cleaned,
+                dried, and folded to perfection, every time.
+              </p>
+          </div>
+        </div>
+
+        <div class="row3">
+          <div class="content3">
+              <p>
+                Our laundry facility is equipped with the latest technology and modern machinery, ensuring 
+                efficient and effective cleaning. We utilize industry-leading practices to maintain the 
+                longevity and appearance of your garments.
+              </p>
+          </div>
+
+          <div class="image3">
+            <img src="img/about3.jpg" alt="">
+          </div>
+        </div>
+
+        <div class="row4">
+          <div class="image4">
+              <img src="img/about4.jpg" alt="">
+          </div>
+
+          <div class="content4">
+              <p>
+                Above all, our goal is to leave our customers satisfied and delighted with our laundry service.
+                We go the extra mile to exceed your expectations, building long-lasting relationships based on
+                trust and exceptional service.
+
+                Choose our laundry service, and experience the convenience, quality, and care that sets us apart.
+                We're here to make your laundry experience a breeze.
+              </p>
+
+              <a href="addcart2.php">View More &nbsp; &gt;</a>
+          </div>
+        </div>
+
+      </section>
+
+      <footer class="brief-intro">
+        <p>
+          &#169; 2023 &nbsp; 5YNDROME &nbsp; &nbsp; &nbsp; All Rights Reserved.
+        </p>
+      </footer>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="js/about.js"></script>
+</body>
+</html>
